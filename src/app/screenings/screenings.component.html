@@ -1,0 +1,119 @@
+<section class="section">
+  <div class="container">
+    <div class="video-container">
+      <iframe
+        width="1920"
+        height="1080"
+        [src]="trailerURL"
+        frameborder="0"
+        allowfullscreen
+      ></iframe>
+    </div>
+    <h1 *ngIf="selectedFilm" class="title is-size-2">
+      <br />{{ selectedFilm.title }}
+    </h1>
+    <br />
+    <h4 *ngIf="movieDetail" class="title">
+      {{ formatRuntime(movieDetail.runtime) }} <br />
+      {{ formatDate(movieDetail.release_date) }} <br />
+      <span class="tag is-info">{{ movieDetail.genres[0].name }}</span>
+    </h4>
+  </div>
+</section>
+
+<section class="section" style="background-color: #f5f5f5">
+  <div class="container">
+    <h1 class="title">Screenings</h1>
+    <input
+      type="date"
+      class="input mr-4"
+      style="width: 200px"
+      [(ngModel)]="date"
+      (change)="getScreenings()"
+    />
+    <br />
+    <br />
+    <br />
+    <div class="columns is-multiline is-mobile">
+      <div
+        class="column is-6-mobile is-3-desktop"
+        *ngFor="let screening of screenings"
+      >
+        <div class="card custom-card">
+          <!-- Add the custom-card class here -->
+          <div class="card-content">
+            <p
+              class="subtitle has-text-weight-bold"
+              [routerLink]="['/book', screening._id]"
+              [queryParams]="{ screeningId: screening._id }"
+            >
+              {{ formatTime(screening.startTime) }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="screenings">
+      <H3 *ngIf="screenings.length <= 0"
+        >There are no screenings on this day</H3
+      >
+    </div>
+  </div>
+</section>
+
+<section *ngIf="selectedFilm" class="section">
+  <div class="container">
+    <h1 class="title">Movie Details</h1>
+
+    <!-- Movie Description -->
+    <div class="box">
+      <p class="is-size-6">{{ selectedFilm.description }}</p>
+    </div>
+
+    <!-- Actors and Director -->
+    <div class="box">
+      <div class="columns">
+        <div class="column is-half">
+          <h2 class="subtitle">Actors</h2>
+          <p>{{ actors.join(", ") }}</p>
+        </div>
+        <div class="column is-half has-text-right">
+          <!-- Add padding-right here -->
+          <h2 class="subtitle">Director</h2>
+          <p>{{ selectedFilm.director }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rating -->
+    <div class="box">
+      <h2 class="subtitle">Rating</h2>
+      <div class="columns is-mobile">
+        <div class="column is-half">
+          <p class="title">{{ selectedFilm.rating }}</p>
+        </div>
+        <div class="column is-half">
+          <progress
+            class="progress"
+            [value]="selectedFilm.rating * 10"
+            max="100"
+            [ngClass]="{
+              'is-success': selectedFilm.rating > 6.5,
+              'is-danger': selectedFilm.rating <= 6.5
+            }"
+          ></progress>
+        </div>
+      </div>
+    </div>
+
+    <div class="box">
+      <h2 class="subtitle">Set Images</h2>
+      <img
+        *ngFor="let image of movieImages"
+        [src]="'https://image.tmdb.org/t/p/original' + image.file_path"
+        alt="Movie Set Image 3"
+        class="image"
+      />
+    </div>
+  </div>
+</section>

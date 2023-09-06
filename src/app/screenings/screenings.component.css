@@ -1,0 +1,17 @@
+.video-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  max-height: 400px;
+  overflow: hidden; /* Hide overflow if needed */
+}
+
+.video-container iframe {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.custom-card {
+  width: 35%; /* Set the desired width here */
+  cursor: pointer;
+}

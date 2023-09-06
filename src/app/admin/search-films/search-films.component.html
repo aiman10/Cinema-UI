@@ -1,0 +1,122 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title">Search Movie</h1>
+    <div class="columns">
+      <div class="column is-one-third">
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Title*</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="Enter movie title"
+                  [(ngModel)]="title"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column is-one-third">
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Release Year</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="Enter release year"
+                  [(ngModel)]="releaseYear"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="field is-grouped is-pulled-right">
+          <div class="control">
+            <!-- Search Button -->
+            <button (click)="search()" class="button is-dark">Search</button>
+          </div>
+          <div class="control">
+            <!-- Add Manually Button -->
+            <button class="button is-dark" [routerLink]="['/admin/addfilm']">
+              Add Movie
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="field is-grouped is-pulled-right">
+          <div class="control">
+            <button (click)="toggleSorting()" class="button is-light">
+              <span class="icon">
+                <i
+                  [class]="
+                    sortingOrder === 'asc'
+                      ? 'fas fa-sort-alpha-up'
+                      : 'fas fa-sort-alpha-down'
+                  "
+                ></i>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="columns is-multiline">
+      <div class="column is-half" *ngFor="let movie of filmResult">
+        <!-- Adjusted class: is-half -->
+        <div class="box" style="padding-bottom: 20px">
+          <article class="media">
+            <div class="media-left">
+              <figure class="image is-96x96">
+                <!-- Adjusted size: is-96x96 -->
+                <img
+                  [src]="[imageUrl + movie.poster_path]"
+                  alt="Movie Poster"
+                />
+              </figure>
+            </div>
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <strong>{{ movie.title }}</strong>
+                  <br />
+                  {{ movie.release_date | date : "yyyy" }}
+                  <br />
+                  {{ movie.overview | slice : 0 : 50 }}...
+                  <br />
+                  <br />
+                  <button class="button is-dark" (click)="addFilm(movie)">
+                    Add Film
+                  </button>
+                </p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div *ngIf="notFound" class="column is-full">
+        <h2 class="title is-5 has-text-centered">
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />No movies were found.
+        </h2>
+      </div>
+    </div>
+  </div>
+</section>

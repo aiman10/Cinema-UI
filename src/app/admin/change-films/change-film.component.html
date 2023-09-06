@@ -1,0 +1,53 @@
+<section class="section" style="background-color: #f5f5f5">
+  <div class="container">
+    <h1 (click)="toggleMovies()" class="title">Change Movies</h1>
+
+    <div style="max-height: 400px; overflow-y: auto">
+      <table *ngIf="showMovies" class="table is-bordered">
+        <thead>
+          <tr>
+            <th style="border: 1px solid #ccc">Poster</th>
+            <th style="border: 1px solid #ccc">Title</th>
+            <th style="border: 1px solid #ccc">Description</th>
+            <th style="border: 1px solid #ccc">Release Year</th>
+            <th style="border: 1px solid #ccc"></th>
+            <th style="border: 1px solid #ccc"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let film of films">
+            <td style="border: 1px solid #ccc">
+              <img
+                [src]="film.posterUrl"
+                alt="Movie Poster"
+                class="image is-48x48"
+              />
+            </td>
+            <td style="border: 1px solid #ccc; width: 10%">
+              <p class="title is-size-6">{{ film.title }}</p>
+            </td>
+            <td style="border: 1px solid #ccc">
+              <p class="is-size-6">
+                {{ film.description.substring(0, 200) }}...
+              </p>
+            </td>
+            <td style="border: 1px solid #ccc">
+              <p class="title is-size-6">{{ film.releaseYear }}</p>
+            </td>
+
+            <td style="border: 1px solid #ccc">
+              <button class="button is-info" (click)="editFilm(film)">
+                Change
+              </button>
+            </td>
+            <td style="border: 1px solid #ccc">
+              <button class="button is-danger" (click)="deleteFilm(film)">
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,117 @@
+<div class="columns">
+  <div class="column">
+    <div class="form-card-container">
+      <div
+        class="card"
+        *ngFor="let Screening of screeningArrays; let i = index"
+      >
+        <header class="card-header">
+          <p class="card-header-title">Screening Form {{ i + 1 }}</p>
+        </header>
+        <div class="card-content">
+          <form>
+            <div class="field">
+              <label class="label is-small">Hall</label>
+              <select
+                *ngIf="halls"
+                [(ngModel)]="Screening.hallNumber"
+                name="hallNumber"
+                (change)="onHallChange($event)"
+              >
+                <option *ngFor="let hal of halls" [ngValue]="hal.hallNumber">
+                  {{ hal.hallNumber }}
+                </option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label class="label is-small">Price</label>
+              <div class="control">
+                <input
+                  class="input is-small"
+                  type="number"
+                  name="ticketPrice"
+                  [(ngModel)]="Screening.price"
+                />
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label is-small">Type</label>
+              <div class="control">
+                <input
+                  class="input is-small"
+                  type="text"
+                  name="type"
+                  [(ngModel)]="Screening.type"
+                />
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label is-small">Start</label>
+              <div class="control">
+                <input
+                  class="input is-small"
+                  type="datetime-local"
+                  name="startTime"
+                  [(ngModel)]="Screening.startTime"
+                />
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label is-small">End</label>
+              <div class="control">
+                <input
+                  class="input is-small"
+                  type="datetime-local"
+                  name="endTime"
+                  [(ngModel)]="Screening.endTime"
+                />
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label is-small">Avail. Seats</label>
+              <div class="control">
+                <input
+                  class="input is-small"
+                  type="number"
+                  name="availableSeats"
+                  [(ngModel)]="Screening.availableSeats"
+                />
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label is-small">Booked Seats</label>
+              <div class="control">
+                <input
+                  class="input is-small"
+                  type="number"
+                  name="bookedSeats"
+                  [(ngModel)]="Screening.bookedSeats"
+                />
+              </div>
+            </div>
+
+            <div class="field is-grouped">
+              <div class="control">
+                <button
+                  class="button is-light is-small"
+                  (click)="reset(Screening)"
+                >
+                  Reset
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="numberOfScreenings > 0" class="control has-text-centered">
+      <button class="button is-dark" (click)="submit()">Submit</button>
+    </div>
+  </div>
+</div>

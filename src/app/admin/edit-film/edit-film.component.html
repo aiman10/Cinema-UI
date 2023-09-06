@@ -1,0 +1,106 @@
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <!-- Add Film Form -->
+      <div class="column is-half">
+        <h1 class="title has-text-centered">Edit Film</h1>
+        <form class="box">
+          <div class="field">
+            <label class="label">Title</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                name="title"
+                [(ngModel)]="title"
+                required
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Release Year</label>
+            <div class="control">
+              <input
+                class="input"
+                type="number"
+                name="releaseYear"
+                [(ngModel)]="releaseYear"
+                required
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Director</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                name="director"
+                [(ngModel)]="director"
+                required
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Description</label>
+            <div class="control">
+              <textarea
+                class="textarea"
+                name="description"
+                [(ngModel)]="description"
+                required
+              ></textarea>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Rating</label>
+            <div class="control">
+              <input
+                class="input"
+                type="number"
+                name="runtime"
+                [(ngModel)]="rating"
+                required
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Poster URL</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                name="posterUrl"
+                [(ngModel)]="posterUrl"
+                required
+              />
+            </div>
+          </div>
+          <hr />
+          <h2 class="subtitle">Screenings</h2>
+          <div class="field"></div>
+          <!--Loading Animation-->
+          <div *ngIf="loading" class="loading-overlay">
+            <i class="fas fa-spinner fa-spin"></i>
+          </div>
+
+          <button
+            *ngIf="numScreenings == finalNumber || numScreenings == 0"
+            type="submit"
+            class="button is-dark is-fullwidth"
+            (click)="update()"
+          >
+            Update Film
+          </button>
+          <button
+            *ngIf="numScreenings >= 1"
+            type="submit"
+            class="button is-dark is-fullwidth"
+          >
+            Add screenings to film
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

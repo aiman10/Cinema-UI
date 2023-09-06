@@ -1,0 +1,18 @@
+.film-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.film-item {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.film-item img {
+  width: auto;
+  height: 64px;
+  margin-right: 1rem;
+}

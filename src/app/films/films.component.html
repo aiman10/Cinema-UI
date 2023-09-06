@@ -1,0 +1,25 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title">Movies screening</h1>
+
+    <ul class="columns is-multiline is-mobile">
+      <li class="column is-6-mobile is-3-desktop" *ngFor="let film of films">
+        <div class="card">
+          <div class="card-image-container">
+            <figure class="image is-4by5">
+              <img [src]="film.posterUrl" alt="Movie Poster" />
+            </figure>
+            <div
+              class="card-image-overlay"
+              [routerLink]="['/films', film._id, 'screenings']"
+            ></div>
+          </div>
+          <div class="card-content">
+            <p class="title is-6">{{ film.title }}</p>
+            <!-- Center align the title  "has-text-centered"-->
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>

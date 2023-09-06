@@ -1,0 +1,90 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title">Book Tickets</h1>
+
+    <form>
+      <div class="field is-small">
+        <label class="label">Name *</label>
+        <div class="control">
+          <input
+            class="input"
+            type="text"
+            placeholder="Enter your name"
+            [(ngModel)]="Name"
+            name="Name"
+            (change)="nameChanged($event)"
+          />
+        </div>
+        <p class="help is-danger" *ngIf="NameRequired">Name is required</p>
+      </div>
+
+      <div class="field is-small">
+        <label class="label">Email *</label>
+        <div class="control">
+          <input
+            class="input"
+            type="email"
+            placeholder="Enter your email"
+            [(ngModel)]="Email"
+            name="Email"
+          />
+        </div>
+        <p class="help is-danger" *ngIf="EmailRequired">Email is required</p>
+        <p class="help is-danger" *ngIf="!EmailValid">
+          Please enter a valid Email
+        </p>
+      </div>
+
+      <div class="field is-small">
+        <label class="label">Phone *</label>
+        <div class="control">
+          <input
+            class="input"
+            type="tel"
+            placeholder="Enter your phone number"
+            [(ngModel)]="Phone"
+            name="Phone"
+          />
+        </div>
+        <p class="help is-danger" *ngIf="PhoneRequired">Phone is required</p>
+        <p class="help is-danger" *ngIf="!PhoneValid">
+          Please enter a valid phone number
+        </p>
+      </div>
+
+      <div class="field is-small">
+        <label class="label">Number of Tickets</label>
+        <div class="control">
+          <div class="select">
+            <select [(ngModel)]="ticketAmount" name="ticketAmount">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+            </select>
+          </div>
+        </div>
+        <div class="field is-horizontal is-small">
+          <div class="field-label is-normal">
+            <label *ngIf="screening"
+              ><b>Total Price:</b> €{{ totalPrice }}</label
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-small">
+        <div class="control">
+          <button class="button is-dark is-fullwidth" (click)="submit()">
+            Book Now
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
