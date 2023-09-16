@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import { Screenings, IHall, Halls, IScreening } from '../screenings';
+import { Screenings, IScreening } from '../types/screenings';
 
 @Injectable({
   providedIn: 'root',

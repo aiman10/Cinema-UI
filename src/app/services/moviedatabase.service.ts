@@ -1,11 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FilmResult, Result } from '../moviedatabaseresult';
+
 import { lastValueFrom } from 'rxjs';
-import { Credits } from '../cast';
-import { Trailers } from '../trailer';
-import { IMovieDetail } from '../moviedetail';
-import { Images } from '../movieImage';
+import { Credits } from '../types/cast';
+import { Images } from '../types/movieImage';
+import { Result } from '../types/moviedatabaseresult';
+import { IMovieDetail } from '../types/moviedetail';
+import { Trailers } from '../types/trailer';
 
 @Injectable({
   providedIn: 'root',

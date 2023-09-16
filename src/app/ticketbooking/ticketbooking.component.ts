@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { ScreeningService } from '../services/screening.service';
-import { IScreening } from '../screenings';
 import { CustomerService } from '../services/customer.service';
 import { TicketService } from '../services/ticket.service';
+import { IScreening } from '../types/screenings';
 
 @Component({
   selector: 'app-ticketbooking',
@@ -42,7 +42,7 @@ export class TicketbookingComponent implements OnInit {
     this.screening = await this.screeningService.getScreeningById(
       this.screeningId
     );
-    this.price = this.screening.price;
+    if (this.screening) this.price = this.screening.price;
     this.totalPrice = this.price;
     //console.log(this.screening);
   }

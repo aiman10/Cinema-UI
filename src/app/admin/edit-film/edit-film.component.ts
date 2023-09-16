@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IScreening } from 'src/app/screenings';
 import { FilmService } from 'src/app/services/film.service';
 import { PassdataService } from 'src/app/services/passdata.service';
+import { ScreeningService } from 'src/app/services/screening.service';
+import { IScreening } from 'src/app/types/screenings';
 
 @Component({
   selector: 'app-edit-film',
@@ -12,9 +13,12 @@ import { PassdataService } from 'src/app/services/passdata.service';
 export class EditFilmComponent implements OnInit {
   numScreenings!: number;
   finalNumber: number | undefined;
+
   emptyScreenigs: IScreening[] = [];
   loading: boolean = false;
   idAPI!: number;
+  private _screeningsCount: number = 0;
+
   private _title = '';
   private _releaseYear!: number;
   private _director = '';
@@ -24,10 +28,10 @@ export class EditFilmComponent implements OnInit {
   private _filmId = '';
 
   errorMessage!: string;
-
   constructor(
     private dataPasser: PassdataService,
     private filmService: FilmService,
+    private screeningService: ScreeningService,
     private router: Router
   ) {}
 
@@ -41,10 +45,23 @@ export class EditFilmComponent implements OnInit {
       this.rating = this.dataPasser.rating;
       this.posterUrl = this.dataPasser.posterUrl;
       this.idAPI = this.dataPasser.movieIdAPI;
+      this.getScreeningCount(this.filmId);
     }
   }
 
-  async update() {
+  async getScreeningCount(id: string) {
+    this.screeningsCount = (
+      await this.screeningService.getScreeningsFromMovie(id)
+    ).length;
+    console.log(this.screeningsCount);
+  }
+
+  editScreenings() {
+    this.router.navigate(['/admin/editscreening']);
+    this.updateFilm();
+  }
+
+  async updateFilm() {
     await this.filmService.updateFilm(this.filmId, {
       title: this.title,
       releaseYear: this.releaseYear,
@@ -55,8 +72,23 @@ export class EditFilmComponent implements OnInit {
       screenings: this.emptyScreenigs,
       idAPI: this.idAPI,
     });
+  }
+
+  async update() {
+    this.updateFilm();
     this.dataPasser.clearFilm();
     this.router.navigate(['/admin']);
+  }
+
+  back() {
+    localStorage.setItem('numberOfScreenings', `${0}`);
+    this.dataPasser.clearFilm();
+    this.router.navigate(['/admin']);
+  }
+
+  addScreenings() {
+    localStorage.setItem('numberOfScreenings', `${0}`);
+    this.router.navigate(['/admin/editfilm/addscreening']);
   }
 
   public get title() {
@@ -104,5 +136,11 @@ export class EditFilmComponent implements OnInit {
   }
   public set filmId(value) {
     this._filmId = value;
+  }
+  public get screeningsCount(): number {
+    return this._screeningsCount;
+  }
+  public set screeningsCount(value: number) {
+    this._screeningsCount = value;
   }
 }

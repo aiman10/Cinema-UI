@@ -95,19 +95,26 @@
           <div *ngIf="loading" class="loading-overlay">
             <i class="fas fa-spinner fa-spin"></i>
           </div>
-
+          <button
+            type="submit"
+            class="button is-danger custom-width"
+            (click)="back()"
+          >
+            Back
+          </button>
           <button
             (click)="addFilm()"
             *ngIf="numScreenings == finalNumber || numScreenings == 0"
             type="submit"
-            class="button is-dark is-fullwidth"
+            class="button is-dark custom-width right-button"
           >
             Add Film
           </button>
+
           <button
             *ngIf="numScreenings >= 1"
             type="submit"
-            class="button is-dark is-fullwidth"
+            class="button is-dark custom-width right-button"
             (click)="addScreenings()"
           >
             Add screenings to film

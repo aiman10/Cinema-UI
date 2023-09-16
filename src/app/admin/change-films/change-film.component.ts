@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IFilm } from 'src/app/films';
+import { IFilm } from 'src/app/types/films';
 import { FilmService } from 'src/app/services/film.service';
 import { PassdataService } from 'src/app/services/passdata.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-change-film',
@@ -41,11 +42,24 @@ export class ChangeFilmComponent implements OnInit {
     this.dataPasser.rating = film.rating;
     this.dataPasser.posterUrl = film.posterUrl;
     this.dataPasser.movieIdAPI = film.idAPI;
-    this.router.navigate(['/admin/editFilm']);
+    this.router.navigate(['/admin/editfilm']);
   }
 
-  async deleteFilm(film: any) {
-    await this.service.deleteFilm(film._id);
-    this.loadMovies();
+  deleteFilm(film: any) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await this.service.deleteFilm(film._id);
+        this.loadMovies();
+        Swal.fire('Deleted!', `${film.title} has been deleted.`, 'success');
+      }
+    });
   }
 }

@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import { Films, IFilm } from '../films';
+import { Films, IFilm } from '../types/films';
+import { IScreening } from '../types/screenings';
 
 @Injectable({
   providedIn: 'root',
@@ -35,5 +36,14 @@ export class FilmService {
       this.http.put(`http://localhost:3000/movies/${id}`, film)
     );
     await this.getAllFilms();
+  }
+
+  public async addScreeningToFilm(id: string, screenings: IScreening[]) {
+    await lastValueFrom(
+      this.http.post<IFilm>(
+        `http://localhost:3000/movies/${id}/screenings`,
+        screenings
+      )
+    );
   }
 }

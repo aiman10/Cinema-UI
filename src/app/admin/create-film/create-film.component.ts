@@ -1,8 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Cast, Crew } from 'src/app/cast';
-import { IScreening } from 'src/app/screenings';
+import { Cast, Crew } from 'src/app/types/cast';
+import { IScreening } from 'src/app/types/screenings';
 import { FilmService } from 'src/app/services/film.service';
 import { MoviedatabaseService } from 'src/app/services/moviedatabase.service';
 import { PassdataService } from 'src/app/services/passdata.service';
@@ -37,22 +37,6 @@ export class CreateFilmComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    /*
-    const navigationState = this.route.snapshot.queryParams?.['state'];
-    //console.log(JSON.parse(navigationState));
-    if (navigationState) {
-      const state = JSON.parse(navigationState);
-      if (state.filmSelected) {
-        this.title = state.title;
-        this.releaseYear = state.releaseYear;
-        this.director = state.director;
-        this.description = state.description;
-        this.rating = state.rating;
-        this.posterUrl = state.posterUrl;
-      }
-    }
-    */
-    //console.log(this.dataPasser.director);
     if (this.dataPasser.filmSelected) {
       this.title = this.dataPasser.title;
       this.releaseYear = this.dataPasser.releaseYear;
@@ -62,7 +46,10 @@ export class CreateFilmComponent implements OnInit {
       this.posterUrl = this.dataPasser.posterUrl;
       this.movieIdAPI = this.dataPasser.movieIdAPI;
     }
-    //this.getCredits();
+    const storedValue = localStorage.getItem('numberOfScreenings');
+    if (storedValue && parseInt(storedValue, 10) > 0) {
+      this.numScreenings = parseInt(storedValue, 10);
+    }
   }
 
   async addFilm() {
@@ -78,6 +65,7 @@ export class CreateFilmComponent implements OnInit {
           screenings: this.emptyScreenigs,
           idAPI: this.movieIdAPI,
         });
+        this.confirmCreateAlert(this.title);
         this.router.navigate(['/admin']);
         this.dataPasser.clearFilm();
       } catch (error) {
@@ -91,6 +79,21 @@ export class CreateFilmComponent implements OnInit {
     } else {
       this.emptyFilmErrorAlert();
     }
+  }
+
+  back() {
+    this.dataPasser.clearFilm();
+    this.router.navigate(['/admin']);
+  }
+
+  confirmCreateAlert(title: string) {
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: `${title} has been created`,
+      showConfirmButton: false,
+      timer: 1500,
+    });
   }
 
   emptyFilmErrorAlert() {
@@ -111,7 +114,7 @@ export class CreateFilmComponent implements OnInit {
   }
 
   addScreenings() {
-    this.dataPasser.screeningNumbers = this.numScreenings;
+    localStorage.setItem('numberOfScreenings', `${this.numScreenings}`);
     this.router.navigate(['/admin/addscreening']);
   }
 

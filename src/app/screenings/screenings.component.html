@@ -107,13 +107,18 @@
     </div>
 
     <div class="box">
-      <h2 class="subtitle">Set Images</h2>
-      <img
-        *ngFor="let image of movieImages"
-        [src]="'https://image.tmdb.org/t/p/original' + image.file_path"
-        alt="Movie Set Image 3"
-        class="image"
-      />
+      <div class="image-container">
+        <img
+          [src]="imageUrl"
+          alt="Movie Set Image"
+          class="image"
+          style="max-width: 75%; max-height: 75%"
+        />
+        <button class="arrow-button left" (click)="prevImage()">&#8249;</button>
+        <button class="arrow-button right" (click)="nextImage()">
+          &#8250;
+        </button>
+      </div>
     </div>
   </div>
 </section>

@@ -15,3 +15,11 @@
   font-size: 3rem;
   color: white;
 }
+
+.custom-width {
+  width: 48%;
+}
+
+.right-button {
+  margin-left: 20px;
+}

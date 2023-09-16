@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Crew } from 'src/app/cast';
-import { FilmResult, Result } from 'src/app/moviedatabaseresult';
+import { Crew } from 'src/app/types/cast';
+import { FilmResult, Result } from 'src/app/types/moviedatabaseresult';
 import { MoviedatabaseService } from 'src/app/services/moviedatabase.service';
 import { PassdataService } from 'src/app/services/passdata.service';
 

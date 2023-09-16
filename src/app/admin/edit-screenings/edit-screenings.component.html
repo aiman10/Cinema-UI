@@ -23,7 +23,6 @@
                 *ngIf="halls"
                 [(ngModel)]="Screening.hallNumber"
                 name="hallNumber"
-                (change)="onHallChange($event)"
               >
                 <option *ngFor="let hal of halls" [ngValue]="hal.hallNumber">
                   {{ hal.hallNumber }}
@@ -124,9 +123,9 @@
       </div>
     </div>
 
-    <div *ngIf="numberOfScreenings > 0" class="control has-text-centered">
+    <div class="control has-text-centered">
       <button class="button is-danger back" (click)="back()">Back</button>
-      <button class="button is-dark" (click)="submit()">Submit</button>
+      <button class="button is-dark">Update</button>
     </div>
   </div>
 </div>

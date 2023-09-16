@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ITicket, Tickets } from '../tickets';
+
 import { lastValueFrom } from 'rxjs';
+import { Tickets, ITicket } from '../types/tickets';
 
 @Injectable({
   providedIn: 'root',

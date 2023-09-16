@@ -2,16 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ScreeningService } from '../services/screening.service';
 import { DatePipe } from '@angular/common';
-import { IHall, IScreening } from '../screenings';
 import { HallService } from '../services/hall.service';
-import { IFilm } from '../films';
 import { FilmService } from '../services/film.service';
 import { MoviedatabaseService } from '../services/moviedatabase.service';
-import { ITrailer } from '../trailer';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { Cast } from '../cast';
-import { IMovieDetail } from '../moviedetail';
-import { Backdrop } from '../movieImage';
+import { Cast } from '../types/cast';
+import { IFilm } from '../types/films';
+import { Backdrop } from '../types/movieImage';
+import { IMovieDetail } from '../types/moviedetail';
+import { IScreening, IHall } from '../types/screenings';
+import { ITrailer } from '../types/trailer';
 
 @Component({
   selector: 'app-screenings',
@@ -21,17 +21,21 @@ import { Backdrop } from '../movieImage';
 export class ScreeningsComponent implements OnInit {
   movieId: string | undefined;
   screenings: IScreening[] | undefined;
-  hall: IHall | undefined;
-  halls: IHall[] | undefined;
-  trailers: ITrailer[] | undefined;
+  hall!: IHall;
+  halls!: IHall[];
+  trailers!: ITrailer[];
   selectedTrailer!: ITrailer;
-  selectedFilm: IFilm | undefined;
+  selectedFilm!: IFilm;
   trailerURL!: SafeResourceUrl;
-  cast: Cast[] | undefined;
+  cast!: Cast[];
   actors: string[] = [];
   movieDetail!: IMovieDetail;
   movieImages: Backdrop[] = [];
+  currentImageIndex = 0;
+  imageUrls: string[] = [];
+
   private _date!: string;
+  currentIndex = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -64,7 +68,9 @@ export class ScreeningsComponent implements OnInit {
     if (this.movieId !== undefined) {
       this.screenings = (
         await this.service.getScreeningsFromMovie(this.movieId)
-      ).filter((screening) => screening.startTime.includes(this.date));
+      ).filter((screening: IScreening) =>
+        screening.startTime.includes(this.date)
+      );
       /*
       for (let screening of this.screenings) {
         screening.hallNumber = await this.getHallNumberbyId(screening.hallId);
@@ -74,7 +80,7 @@ export class ScreeningsComponent implements OnInit {
 
   async getMovieDetail(id: number) {
     this.movieDetail = await this.movieDatabase.getDetail(id);
-    console.log(this.movieDetail);
+    //console.log(this.movieDetail);
   }
 
   async getUrl(id: number) {
@@ -102,6 +108,11 @@ export class ScreeningsComponent implements OnInit {
 
   async getImages(id: number) {
     this.movieImages = (await this.movieDatabase.getImages(id)).backdrops;
+    this.movieImages.forEach((image) => {
+      if (image.vote_average >= 4) {
+        this.imageUrls.push(image.file_path);
+      }
+    });
   }
 
   async getHallNumberbyId(id: string) {
@@ -145,6 +156,25 @@ export class ScreeningsComponent implements OnInit {
       month: 'short',
       day: 'numeric',
     });
+  }
+
+  prevImage() {
+    this.currentImageIndex =
+      (this.currentImageIndex - 1 + this.imageUrls.length) %
+      this.movieImages.length;
+  }
+
+  nextImage() {
+    this.currentImageIndex =
+      (this.currentImageIndex + 1) % this.imageUrls.length;
+  }
+
+  //"'https://image.tmdb.org/t/p/original' + image.file_path"
+  get imageUrl(): string {
+    return (
+      'https://image.tmdb.org/t/p/original' +
+      this.imageUrls[this.currentImageIndex]
+    );
   }
 
   public get date(): string {

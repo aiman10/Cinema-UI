@@ -18,6 +18,9 @@ import { CreateFilmComponent } from './admin/create-film/create-film.component';
 import { ChangeFilmComponent } from './admin/change-films/change-film.component';
 import { EditFilmComponent } from './admin/edit-film/edit-film.component';
 import { CreateScreeningsComponent } from './admin/create-screenings/create-screenings.component';
+import { EditScreeningsComponent } from './admin/edit-screenings/edit-screenings.component';
+import { AddScreeningsTofilmComponent } from './admin/edit-film/add-screenings-tofilm/add-screenings-tofilm.component';
+import { HallComponent } from './admin/hall/hall.component';
 //import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
@@ -34,6 +37,9 @@ import { CreateScreeningsComponent } from './admin/create-screenings/create-scre
     ChangeFilmComponent,
     EditFilmComponent,
     CreateScreeningsComponent,
+    EditScreeningsComponent,
+    AddScreeningsTofilmComponent,
+    HallComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,16 +71,28 @@ import { CreateScreeningsComponent } from './admin/create-screenings/create-scre
           component: AdminComponent,
         },
         {
+          path: 'hall',
+          component: HallComponent,
+        },
+        {
           path: 'admin/addfilm',
           component: CreateFilmComponent,
         },
         {
-          path: 'admin/editFilm',
+          path: 'admin/editfilm',
           component: EditFilmComponent,
         },
         {
           path: 'admin/addscreening',
           component: CreateScreeningsComponent,
+        },
+        {
+          path: 'admin/editscreening',
+          component: EditScreeningsComponent,
+        },
+        {
+          path: 'admin/editfilm/addscreening',
+          component: AddScreeningsTofilmComponent,
         },
         {
           path: '',

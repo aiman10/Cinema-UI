@@ -20,7 +20,19 @@
 
     <div id="navbarMenu" class="navbar-menu">
       <div class="navbar-end">
-        <a class="navbar-item" [routerLink]="['admin']"> Admin </a>
+        <!-- Admin Dropdown -->
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link"> Admin </a>
+
+          <div class="navbar-dropdown">
+            <!-- Halls link within the dropdown -->
+            <a class="navbar-item" [routerLink]="['hall']"> Halls </a>
+
+            <!-- Films link within the dropdown -->
+            <a class="navbar-item" [routerLink]="['admin/films']"> Films </a>
+          </div>
+        </div>
+        <!-- End of Admin Dropdown -->
       </div>
     </div>
   </div>

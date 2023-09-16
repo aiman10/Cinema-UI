@@ -15,3 +15,43 @@
   width: 35%; /* Set the desired width here */
   cursor: pointer;
 }
+
+/* Style for the image container */
+.image-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Style for the arrow buttons */
+.arrow-button {
+  position: absolute;
+  top: 50%;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
+  color: #333;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+  transition: background-color 0.3s;
+  border-radius: 50%; /* Make it a circle */
+  width: 30px; /* Set the width and height to create a circle */
+  height: 30px;
+  line-height: 1px; /* Vertically center the arrow icon */
+  transition: background-color 0.3s;
+}
+
+.arrow-button:hover {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+/* Style for the left arrow */
+.left {
+  left: 165px;
+}
+
+/* Style for the right arrow */
+.right {
+  right: 165px;
+}
