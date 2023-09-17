@@ -77,13 +77,13 @@ export class EditFilmComponent implements OnInit {
   async update() {
     this.updateFilm();
     this.dataPasser.clearFilm();
-    this.router.navigate(['/admin']);
+    this.router.navigate(['/admin/film']);
   }
 
   back() {
     localStorage.setItem('numberOfScreenings', `${0}`);
     this.dataPasser.clearFilm();
-    this.router.navigate(['/admin']);
+    this.router.navigate(['/admin/film']);
   }
 
   addScreenings() {

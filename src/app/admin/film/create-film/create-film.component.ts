@@ -83,7 +83,7 @@ export class CreateFilmComponent implements OnInit {
 
   back() {
     this.dataPasser.clearFilm();
-    this.router.navigate(['/admin']);
+    this.router.navigate(['/admin/film']);
   }
 
   confirmCreateAlert(title: string) {

@@ -87,7 +87,7 @@ export class CreateScreeningsComponent implements OnInit {
 
     localStorage.setItem('numberOfScreenings', `${0}`);
     this.dataPasser.clearFilm();
-    this.router.navigate(['/admin']);
+    this.router.navigate(['/admin/film']);
   }
 
   delete(index: number) {
@@ -127,6 +127,7 @@ export class CreateScreeningsComponent implements OnInit {
     //console.log(this.selectedHall);
   }
 
+  //TODO update endtime with runtime and update avail seats with hall capacity
   updateEndTime(Screening: IScreening) {
     // Assuming movieDetail.runtime is a number representing minutes
     const startTime = new Date(Screening.startTime).getTime(); // Convert to milliseconds

@@ -1,6 +1,73 @@
-<title>Excisting Halls</title>
-<div *ngFor="let hall; in: halls">
-  {{ hall.hallNumber }}
-</div>
+<section class="section">
+  <div class="container">
+    <h1 class="title">Halls</h1>
+  </div>
+  <div class="columns is-multiline">
+    <div
+      class="column is-6-mobile is-4-tablet is-3-desktop"
+      *ngFor="let hall of halls"
+    >
+      <div class="card">
+        <div class="card-content">
+          <button class="delete-button" (click)="deleteHall(hall)">
+            <span class="icon">
+              <i class="fas fa-trash"></i>
+            </span>
+          </button>
+          <p class="subtitle is-6"><b>Hall: </b>{{ hall.hallNumber }}</p>
+          <p class="subtitle is-6"><b>Capacity:</b> {{ hall.capacity }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-half">
+        <h1 class="title has-text-centered">Add Hall</h1>
+        <form class="box">
+          <div class="field">
+            <label class="label">Hall Number</label>
+            <div class="control">
+              <input
+                class="input"
+                type="number"
+                name="hallNumber"
+                [(ngModel)]="hallNumber"
+                required
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Capacity</label>
+            <div class="control">
+              <input
+                class="input"
+                type="number"
+                name="capacity"
+                [(ngModel)]="capacity"
+                required
+              />
+            </div>
+          </div>
 
-<app-create-hall></app-create-hall>
+          <button
+            type="submit"
+            class="button is-danger custom-width"
+            (click)="back()"
+          >
+            Back
+          </button>
+          <button
+            (click)="addHall()"
+            type="submit"
+            class="button is-dark custom-width right-button"
+          >
+            Add Hall
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

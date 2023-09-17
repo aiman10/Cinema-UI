@@ -22,4 +22,10 @@ export class ScreeningService {
       this.http.get<IScreening>(`http://localhost:3000/screenings/${id}`)
     );
   }
+
+  getAllScreenings() {
+    return lastValueFrom(
+      this.http.get<Screenings>(`http://localhost:3000/screenings`)
+    );
+  }
 }

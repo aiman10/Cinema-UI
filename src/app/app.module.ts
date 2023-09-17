@@ -22,7 +22,6 @@ import { EditScreeningsComponent } from './admin/film/edit-screenings/edit-scree
 import { AddScreeningsTofilmComponent } from './admin/film/edit-film/add-screenings-tofilm/add-screenings-tofilm.component';
 import { HallComponent } from './admin/hall/hall.component';
 import { FilmComponent } from './admin/film/film.component';
-import { CreateHallComponent } from './admin/hall/create-hall/create-hall.component';
 //import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
@@ -43,7 +42,6 @@ import { CreateHallComponent } from './admin/hall/create-hall/create-hall.compon
     AddScreeningsTofilmComponent,
     HallComponent,
     FilmComponent,
-    CreateHallComponent,
   ],
   imports: [
     BrowserModule,

@@ -23,7 +23,7 @@ export class HallService {
     await lastValueFrom(
       this.http.post<IHall>(`http://localhost:3000/halls`, hall)
     );
-    this.getHalls();
+    await this.getHalls();
   }
 
   public async deleteHall(id: string) {

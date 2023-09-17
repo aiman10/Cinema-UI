@@ -17,7 +17,7 @@ export interface IScreening {
 export type Halls = IHall[];
 
 export interface IHall {
-  _id: ObjectId;
+  _id?: ObjectId;
   hallNumber: number;
   capacity: number;
 }
