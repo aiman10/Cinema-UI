@@ -13,14 +13,16 @@ import { DatePipe } from '@angular/common';
 import { TicketbookingComponent } from './ticketbooking/ticketbooking.component';
 import { BookingConfirmationComponent } from './booking-confirmation/booking-confirmation.component';
 import { AdminComponent } from './admin/admin.component';
-import { searchFilmsComponent } from './admin/search-films/search-films.component';
-import { CreateFilmComponent } from './admin/create-film/create-film.component';
-import { ChangeFilmComponent } from './admin/change-films/change-film.component';
-import { EditFilmComponent } from './admin/edit-film/edit-film.component';
-import { CreateScreeningsComponent } from './admin/create-screenings/create-screenings.component';
-import { EditScreeningsComponent } from './admin/edit-screenings/edit-screenings.component';
-import { AddScreeningsTofilmComponent } from './admin/edit-film/add-screenings-tofilm/add-screenings-tofilm.component';
+import { searchFilmsComponent } from './admin/film/search-films/search-films.component';
+import { CreateFilmComponent } from './admin/film/create-film/create-film.component';
+import { ChangeFilmComponent } from './admin/film/change-films/change-film.component';
+import { EditFilmComponent } from './admin/film/edit-film/edit-film.component';
+import { CreateScreeningsComponent } from './admin/film/create-screenings/create-screenings.component';
+import { EditScreeningsComponent } from './admin/film/edit-screenings/edit-screenings.component';
+import { AddScreeningsTofilmComponent } from './admin/film/edit-film/add-screenings-tofilm/add-screenings-tofilm.component';
 import { HallComponent } from './admin/hall/hall.component';
+import { FilmComponent } from './admin/film/film.component';
+import { CreateHallComponent } from './admin/hall/create-hall/create-hall.component';
 //import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
@@ -40,6 +42,8 @@ import { HallComponent } from './admin/hall/hall.component';
     EditScreeningsComponent,
     AddScreeningsTofilmComponent,
     HallComponent,
+    FilmComponent,
+    CreateHallComponent,
   ],
   imports: [
     BrowserModule,
@@ -93,6 +97,10 @@ import { HallComponent } from './admin/hall/hall.component';
         {
           path: 'admin/editfilm/addscreening',
           component: AddScreeningsTofilmComponent,
+        },
+        {
+          path: 'admin/film',
+          component: FilmComponent,
         },
         {
           path: '',

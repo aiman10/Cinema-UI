@@ -18,4 +18,15 @@ export class HallService {
   getHalls() {
     return lastValueFrom(this.http.get<Halls>(`http://localhost:3000/halls`));
   }
+
+  public async createHall(hall: IHall) {
+    await lastValueFrom(
+      this.http.post<IHall>(`http://localhost:3000/halls`, hall)
+    );
+    this.getHalls();
+  }
+
+  public async deleteHall(id: string) {
+    await lastValueFrom(this.http.delete(`http://localhost:3000/halls/${id}`));
+  }
 }
