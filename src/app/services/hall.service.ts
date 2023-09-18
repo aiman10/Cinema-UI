@@ -28,5 +28,6 @@ export class HallService {
 
   public async deleteHall(id: string) {
     await lastValueFrom(this.http.delete(`http://localhost:3000/halls/${id}`));
+    await this.getHalls();
   }
 }

@@ -23,9 +23,12 @@
                 *ngIf="halls"
                 [(ngModel)]="Screening.hallNumber"
                 name="hallNumber"
-                (change)="onHallChange($event)"
               >
-                <option *ngFor="let hal of halls" [ngValue]="hal.hallNumber">
+                <option
+                  *ngFor="let hal of halls"
+                  [ngValue]="hal.hallNumber"
+                  (change)="onHallChange()"
+                >
                   {{ hal.hallNumber }}
                 </option>
               </select>

@@ -66,7 +66,7 @@ export class CreateFilmComponent implements OnInit {
           idAPI: this.movieIdAPI,
         });
         this.confirmCreateAlert(this.title);
-        this.router.navigate(['/admin']);
+        this.router.navigate(['/admin/film']);
         this.dataPasser.clearFilm();
       } catch (error) {
         if (error instanceof HttpErrorResponse && error.status === 409) {

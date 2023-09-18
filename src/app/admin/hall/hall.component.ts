@@ -63,12 +63,13 @@ export class HallComponent {
     }
   }
 
-  deleteHall(hall: IHall) {
+  async deleteHall(hall: IHall) {
     //check for existing screenings
     if (this.listOfHallNumbers.includes(hall.hallNumber)) {
       alert('Exists');
     } else {
-      //TODO delete
+      await this.hallService.deleteHall(hall._id!.toString());
+      this.getHalls();
     }
   }
 

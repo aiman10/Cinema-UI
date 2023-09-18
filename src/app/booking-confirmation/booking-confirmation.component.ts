@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HallService } from '../services/hall.service';
 import { ScreeningService } from '../services/screening.service';
 import { FilmService } from '../services/film.service';
+import { IFilm } from '../types/films';
 
 @Component({
   selector: 'app-booking-confirmation',
@@ -19,6 +20,8 @@ export class BookingConfirmationComponent implements OnInit {
   screeningId!: string;
   hallNumber!: number;
   movieName!: string;
+  film!: IFilm;
+  url = '';
   constructor(
     private route: ActivatedRoute,
     private screeningService: ScreeningService,
@@ -41,6 +44,8 @@ export class BookingConfirmationComponent implements OnInit {
     this.hallNumber = (
       await this.screeningService.getScreeningById(this.screeningId)
     ).hallNumber;
-    this.movieName = (await this.filmService.getFilm(this.filmId)).title;
+    this.film = await this.filmService.getFilm(this.filmId);
+
+    this.url = this.film.posterUrl;
   }
 }

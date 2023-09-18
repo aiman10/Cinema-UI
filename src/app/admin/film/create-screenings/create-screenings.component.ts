@@ -19,7 +19,6 @@ export class CreateScreeningsComponent implements OnInit {
   finalNumber!: number;
   halls: IHall[] = [];
   movieDetail!: IMovieDetail;
-  private _selectedHall!: IHall;
 
   constructor(
     private dataPasser: PassdataService,
@@ -31,7 +30,7 @@ export class CreateScreeningsComponent implements OnInit {
     //this.numberOfScreenings = this.dataPasser.screeningNumbers;
     const storedValue = localStorage.getItem('numberOfScreenings');
     if (storedValue) this.numberOfScreenings = parseInt(storedValue, 10);
-    console.log(this.numberOfScreenings);
+
     for (let i = 0; i < this.numberOfScreenings; i++) {
       const emptyScreening: IScreening = {
         hallNumber: this.finalNumber,
@@ -52,7 +51,6 @@ export class CreateScreeningsComponent implements OnInit {
 
   async getMovieDetail(id: number) {
     this.movieDetail = await this.movieDatabase.getDetail(id);
-    console.log(this.movieDetail.runtime);
   }
 
   reset(Screening: IScreening) {
@@ -64,10 +62,9 @@ export class CreateScreeningsComponent implements OnInit {
     Screening.bookedSeats = this.finalNumber;
   }
 
-  onHallChange(event: any) {
-    if (event.target != null) {
-      console.log(event.target.value);
-    }
+  onHallChange() {
+    console.log('onHallChange() called');
+    alert('Test');
   }
 
   async submit() {
@@ -117,14 +114,6 @@ export class CreateScreeningsComponent implements OnInit {
 
   back() {
     this.router.navigate(['/admin/addfilm']);
-  }
-
-  public get selectedHall(): IHall {
-    return this._selectedHall;
-  }
-  public set selectedHall(value: IHall) {
-    this._selectedHall = value;
-    //console.log(this.selectedHall);
   }
 
   //TODO update endtime with runtime and update avail seats with hall capacity

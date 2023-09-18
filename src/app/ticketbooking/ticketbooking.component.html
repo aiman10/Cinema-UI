@@ -1,8 +1,13 @@
 <section class="section">
   <div class="container">
-    <h1 class="title">Book Tickets</h1>
-
-    <form>
+    <h1
+      class="title is-centered centered-text"
+      *ngIf="screening?.availableSeats == screening?.bookedSeats"
+    >
+      All Tickets are sold out
+    </h1>
+    <form *ngIf="screening!.availableSeats > screening!.bookedSeats">
+      <h1 class="title">Book Tickets</h1>
       <div class="field is-small">
         <label class="label">Name *</label>
         <div class="control">

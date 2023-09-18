@@ -1,24 +1,39 @@
 <section class="section">
-  <div class="container">
+  <div class="container custom-max-width">
     <div class="card">
       <div class="card-content">
-        <p class="subtitle">Thank you for booking your tickets!</p>
-        <p>Your booking details:</p>
-        <ul>
-          <li><b>Name:</b> {{ name }}</li>
-          <li><b>Email:</b> {{ email }}</li>
-          <li><b>Phone:</b> {{ phone }}</li>
-          <li><b>Number of Tickets:</b> {{ ticketAmount }}</li>
-          <li><b>Movie:</b> {{ movieName }}</li>
-          <li><b>Total Price:</b> €{{ totalPrice }}</li>
-          <li><b>Date:</b> August 15, 2023, 18:00 - 20:00</li>
-          <li><b>Hall:</b> {{ hallNumber }}</li>
-        </ul>
-        <br />
-        <p>Your booking reference number is: <b>ABC123DEF</b></p>
-        <p>We have sent a confirmation email to your provided email address.</p>
-        <p>Enjoy the movie!</p>
+        <div class="columns">
+          <!-- Booking Details Column -->
+          <div class="column is-three-quarters">
+            <p class="subtitle">Thank you for booking your tickets!</p>
+            <ul>
+              <li><b>Name:</b> {{ name }}</li>
+              <li><b>Email:</b> {{ email }}</li>
+              <li><b>Phone:</b> {{ phone }}</li>
+              <li><b>Number of Tickets:</b> {{ ticketAmount }}</li>
+              <li><b>Movie:</b> {{ movieName }}</li>
+              <li><b>Total Price:</b> €{{ totalPrice }}</li>
+              <li><b>Date:</b> August 15, 2023, 18:00 - 20:00</li>
+              <li><b>Hall:</b> {{ hallNumber }}</li>
+            </ul>
+            <br />
+            <p>Your booking reference number is: <b>ABC123DEF</b></p>
+            <p>
+              We have sent a confirmation email to your provided email address.
+              <br />
+              Make sure to check your spam folder.
+            </p>
+          </div>
+          <!-- Movie Poster Column -->
+          <div class="column">
+            <p class="title is-6">{{ film.title }}</p>
+            <figure class="image custom-size">
+              <img src="{{ url }}" alt="Movie Poster" />
+            </figure>
+          </div>
+        </div>
       </div>
+      <div class="column">TESTING</div>
     </div>
   </div>
 </section>

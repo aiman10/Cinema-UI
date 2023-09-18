@@ -1,0 +1,8 @@
+.custom-size {
+  width: 160px; /* Adjust the width to your preferred size */
+  height: auto; /* Maintain the aspect ratio */
+}
+
+.custom-max-width {
+  width: 50%; /* Adjust the max-width to your preferred value */
+}
