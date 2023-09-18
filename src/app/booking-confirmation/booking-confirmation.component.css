@@ -6,3 +6,10 @@
 .custom-max-width {
   width: 50%; /* Adjust the max-width to your preferred value */
 }
+
+.custom-qr-size {
+  width: 25%; /* Adjust the width to your preferred size */
+
+  display: block;
+  margin: 0 auto; /* Center the QR code horizontally */
+}

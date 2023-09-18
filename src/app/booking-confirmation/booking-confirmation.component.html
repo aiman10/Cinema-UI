@@ -11,11 +11,12 @@
               <li><b>Email:</b> {{ email }}</li>
               <li><b>Phone:</b> {{ phone }}</li>
               <li><b>Number of Tickets:</b> {{ ticketAmount }}</li>
-              <li><b>Movie:</b> {{ movieName }}</li>
+
               <li><b>Total Price:</b> €{{ totalPrice }}</li>
               <li><b>Date:</b> August 15, 2023, 18:00 - 20:00</li>
               <li><b>Hall:</b> {{ hallNumber }}</li>
             </ul>
+            <br />
             <br />
             <p>Your booking reference number is: <b>ABC123DEF</b></p>
             <p>
@@ -23,6 +24,7 @@
               <br />
               Make sure to check your spam folder.
             </p>
+            <a (click)="pdf()">DOWNLOAD TICKET </a>
           </div>
           <!-- Movie Poster Column -->
           <div class="column">
@@ -33,7 +35,11 @@
           </div>
         </div>
       </div>
-      <div class="column">TESTING</div>
+      <!--
+  <div class="column is-centered">
+        <qrcode [qrdata]="qrCodeData" class="custom-qr-size"></qrcode>
+      </div>
+      -->
     </div>
   </div>
 </section>

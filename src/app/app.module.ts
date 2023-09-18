@@ -22,6 +22,7 @@ import { EditScreeningsComponent } from './admin/film/edit-screenings/edit-scree
 import { AddScreeningsTofilmComponent } from './admin/film/edit-film/add-screenings-tofilm/add-screenings-tofilm.component';
 import { HallComponent } from './admin/hall/hall.component';
 import { FilmComponent } from './admin/film/film.component';
+import { QRCodeModule } from 'angularx-qrcode';
 //import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
@@ -49,6 +50,7 @@ import { FilmComponent } from './admin/film/film.component';
     HttpClientModule,
     MatSlideToggleModule,
     FormsModule,
+    QRCodeModule,
     //SweetAlert2Module.forRoot(),
     RouterModule.forRoot(
       [
