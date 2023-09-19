@@ -1,0 +1,32 @@
+<section class="section">
+  <div class="container">
+    <div class="columns is-multiline">
+      <!-- Repeat this card for each ticket -->
+      <div class="column is-4" *ngFor="let ticket of tickets">
+        <div class="card">
+          <div class="card-content">
+            <!-- Ticket details go here -->
+
+            <p><b>Screening Date:</b> {{ formatDate(ticket.screeningDate) }}</p>
+            <p><b>Hall Number:</b> {{ ticket.hallNumber }}</p>
+            <p><b>Quantity:</b> {{ ticket.quantity }}</p>
+            <p><b>Total Price:</b> €{{ ticket.totalPrice }}</p>
+            <p><b>Customer Name:</b> {{ ticket.customerName }}</p>
+            <p><b>Email:</b> {{ ticket.email }}</p>
+            <p>
+              <b>Valid: </b>
+              <span
+                [ngClass]="{
+                  valid: checkValidTicket(ticket),
+                  invalid: !checkValidTicket(ticket)
+                }"
+                >{{ checkValidTicket(ticket) ? "Valid" : "Not Valid" }}</span
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- End of card loop -->
+    </div>
+  </div>
+</section>

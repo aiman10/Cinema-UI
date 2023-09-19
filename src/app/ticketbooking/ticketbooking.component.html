@@ -1,8 +1,11 @@
 <section class="section">
   <div class="container">
+    <h1 class="title is-centered centered-text" *ngIf="loadingScreening">
+      Loading...
+    </h1>
     <h1
       class="title is-centered centered-text"
-      *ngIf="screening?.availableSeats == screening?.bookedSeats"
+      *ngIf="screening && screening.availableSeats == screening.bookedSeats"
     >
       All Tickets are sold out
     </h1>

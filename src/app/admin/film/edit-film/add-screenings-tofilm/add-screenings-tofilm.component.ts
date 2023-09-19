@@ -57,7 +57,7 @@ export class AddScreeningsTofilmComponent implements OnInit {
       this.screeningArrays
     );
 
-    this.router.navigate(['/admin']);
+    this.router.navigate(['/admin/film']);
     this.dataPasser.clearFilm();
   }
 

@@ -23,6 +23,7 @@ import { AddScreeningsTofilmComponent } from './admin/film/edit-film/add-screeni
 import { HallComponent } from './admin/hall/hall.component';
 import { FilmComponent } from './admin/film/film.component';
 import { QRCodeModule } from 'angularx-qrcode';
+import { TicketComponent } from './admin/ticket/ticket.component';
 //import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
@@ -43,6 +44,7 @@ import { QRCodeModule } from 'angularx-qrcode';
     AddScreeningsTofilmComponent,
     HallComponent,
     FilmComponent,
+    TicketComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,10 +73,6 @@ import { QRCodeModule } from 'angularx-qrcode';
           component: BookingConfirmationComponent,
         },
         {
-          path: 'admin',
-          component: AdminComponent,
-        },
-        {
           path: 'hall',
           component: HallComponent,
         },
@@ -101,6 +99,10 @@ import { QRCodeModule } from 'angularx-qrcode';
         {
           path: 'admin/film',
           component: FilmComponent,
+        },
+        {
+          path: 'admin/ticket',
+          component: TicketComponent,
         },
         {
           path: '',

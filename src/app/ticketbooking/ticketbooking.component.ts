@@ -15,6 +15,8 @@ export class TicketbookingComponent implements OnInit {
   screening: IScreening | undefined;
   price!: number;
   totalPrice!: number;
+  loadingScreening: boolean = true;
+
   private _Name = '';
   private _Email = '';
   private _Phone = '';
@@ -35,16 +37,20 @@ export class TicketbookingComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    this.route.paramMap.subscribe((params) => {
+    this.route.paramMap.subscribe(async (params) => {
       this.screeningId = params.get('id')!;
-      //console.log(this.screeningId);
+      this.loadingScreening = true; // Set loading flag to true
+
+      // Wait for the data to load
+      this.screening = await this.screeningService.getScreeningById(
+        this.screeningId
+      );
+
+      this.loadingScreening = false; // Set loading flag to false when data is loaded
+
+      if (this.screening) this.price = this.screening.price;
+      this.totalPrice = this.price;
     });
-    this.screening = await this.screeningService.getScreeningById(
-      this.screeningId
-    );
-    if (this.screening) this.price = this.screening.price;
-    this.totalPrice = this.price;
-    //console.log(this.screening);
   }
 
   async submit() {

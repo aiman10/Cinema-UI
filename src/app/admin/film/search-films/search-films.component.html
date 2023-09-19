@@ -48,7 +48,11 @@
           </div>
           <div class="control">
             <!-- Add Manually Button -->
-            <button class="button is-dark" [routerLink]="['/admin/addfilm']">
+            <button
+              class="button is-dark"
+              [routerLink]="['/admin/addfilm']"
+              (click)="clearScreeningNumbers()"
+            >
               Add Movie
             </button>
           </div>

@@ -95,6 +95,10 @@ export class searchFilmsComponent implements OnInit {
     this.getCredits(film.id);
   }
 
+  clearScreeningNumbers() {
+    localStorage.setItem('numberOfScreenings', `${0}`);
+  }
+
   async getCredits(id: number) {
     const directors: string[] = [];
     this.crew = (await this.movieDatabase.getCredits(id)).crew;
@@ -109,6 +113,7 @@ export class searchFilmsComponent implements OnInit {
         console.log(`Directors: ${this.dataPasser.director}`);
       }
     }
+    this.clearScreeningNumbers();
     this.router.navigate(['/admin/addfilm']);
   }
 
