@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Introduction
 
-This was small project I've build to improve my Angular skills. The idea was to build a ticketing system for a movie theather.
+This was a small project I've build to improve my Angular skills. The idea was to build a ticketing system for a movie theather.
 
 ## Development server
 
