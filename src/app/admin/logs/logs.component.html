@@ -1,0 +1,13 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title">Logs</h1>
+    <div class="content">
+      <div *ngFor="let log of logs" class="log-entry">
+        <span class="tag is-light">{{ log.timestamp | date : "short" }}</span>
+        <strong>{{ log.title }}</strong> was
+        <span [ngClass]="log.action">{{ log.action }}</span
+        >.
+      </div>
+    </div>
+  </div>
+</section>

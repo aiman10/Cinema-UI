@@ -24,6 +24,7 @@ import { HallComponent } from './admin/hall/hall.component';
 import { FilmComponent } from './admin/film/film.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { TicketComponent } from './admin/ticket/ticket.component';
+import { LogsComponent } from './admin/logs/logs.component';
 //import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
@@ -45,6 +46,7 @@ import { TicketComponent } from './admin/ticket/ticket.component';
     HallComponent,
     FilmComponent,
     TicketComponent,
+    LogsComponent,
   ],
   imports: [
     BrowserModule,
@@ -103,6 +105,10 @@ import { TicketComponent } from './admin/ticket/ticket.component';
         {
           path: 'admin/ticket',
           component: TicketComponent,
+        },
+        {
+          path: 'admin/logs',
+          component: LogsComponent,
         },
         {
           path: '',

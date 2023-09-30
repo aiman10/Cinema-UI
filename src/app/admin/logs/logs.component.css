@@ -1,0 +1,18 @@
+.added {
+  color: green;
+}
+
+.deleted {
+  color: red;
+}
+
+.edited {
+  color: blue;
+}
+
+.log-entry {
+  border: 1px solid #eee;
+  padding: 8px;
+  margin-bottom: 8px;
+  border-radius: 5px;
+}
